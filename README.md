@@ -13,6 +13,13 @@ portafolio-mike/
 └── README.md
 ```
 
+## Funciones dinámicas (v2+)
+
+- **Buscador** (lupa en el nav, o tecla `/`): busca en todo el contenido del sitio con índice generado desde el HTML. Sin JS no aparece el botón.
+- **Formulario de contacto**: envía por [Formspree](https://formspree.io) (gratis, sin backend). Para activarlo: crear un formulario en Formspree y pegar el ID en `main.js` → `const FORMSPREE_ID = "PONER_ID_AQUI"`.
+- **Tours 360° en vivo** (sección `#tours-vivo`): 3 iframes con lazy-load. Para activarlos: pegar las URLs públicas de `virtualtour.360essentialtrip.com` en los atributos `data-src` (reemplazar `PONER_URL_TOUR_1_AQUI`, etc.).
+- **Blog en vivo** (sección `#blog`): últimos 3 posts de `cuentero13.blogspot.com` vía feed RSS + proxy `api.rss2json.com`. Si el feed falla, se muestra el botón "Visitar el blog".
+
 ## Cómo verlo
 
 - **Local:** abrir `index.html` en el navegador (los CDN requieren internet).

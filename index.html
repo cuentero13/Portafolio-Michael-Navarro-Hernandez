@@ -19,7 +19,9 @@
     <a class="nav-brand" href="#hero">MN<span>·</span>H</a>
     <nav class="nav-links" aria-label="Navegación principal">
       <a href="#momento-360">360°</a>
+      <a href="#tours-vivo">Tours</a>
       <a href="#momento-festival">Festival</a>
+      <a href="#blog">Blog</a>
       <a href="#galeria">Galería</a>
       <a href="#contacto" class="nav-cta">Contacto</a>
     </nav>
@@ -27,7 +29,7 @@
 
   <main>
     <!-- HERO: el trabajo primero -->
-    <section id="hero" class="hero hero-photo">
+    <section id="hero" class="hero hero-photo" data-search-title="Inicio — Historias que se ven. Territorios que se recorren." data-search-keys="inicio portafolio michael navarro hernandez cuentero">
       <img class="hero-bg" src="https://lh3.googleusercontent.com/d/1i7izO83Nv0ah8gm-p-ut1D1G3tEXlzaV=w1200" alt="Noche de festival: público bailando bajo luces de colores en un show al aire libre" fetchpriority="high">
       <div class="hero-veil" aria-hidden="true"></div>
       <div class="hero-inner">
@@ -57,7 +59,7 @@
     </div>
 
     <!-- MOMENTO 360° -->
-    <section id="momento-360" class="section moment">
+    <section id="momento-360" class="section moment" data-search-title="360 Essential Trip — Tours virtuales 360°" data-search-keys="tours 360 precios bolivia costa rica paquetes cuento historia viva inmersivo drones delta marriott matterport">
       <div class="moment-split">
         <div class="moment-media" data-reveal>
           <img src="https://lh3.googleusercontent.com/d/1QlSk5SO424LJNB6vBOlLH-j6VsAmXyi9=w1200" alt="Ambiente de festival con público reunido" loading="lazy">
@@ -72,9 +74,11 @@
           </p>
           <div class="cta-row" data-reveal>
             <a class="btn btn-primary" href="https://virtualtour.360essentialtrip.com" target="_blank" rel="noopener">Explorar los tours</a>
+            <a class="btn btn-ghost" href="#tours-vivo">Ver tours en vivo</a>
           </div>
         </div>
       </div>
+
 
       <h3 class="subsection" data-reveal>Lo que logran los tours 360°</h3>
       <div class="cases" data-reveal>
@@ -116,8 +120,56 @@
       </div>
     </section>
 
+    <!-- TOURS 360° EN VIVO (iframes embebidos) -->
+    <!--
+      ═══════════════════════════════════════════════════════════════════
+      PARA MIKE — CÓMO ACTIVAR LOS TOURS EMBEBIDOS:
+      1. Copiá la URL pública de cada tour desde virtualtour.360essentialtrip.com
+         (ejemplo: https://virtualtour.360essentialtrip.com/tour/plaza-de-la-democracia)
+      2. Pegala en el atributo data-src de cada iframe acá abajo, reemplazando
+         "PONER_URL_TOUR_1_AQUI" (luego _2 y _3). Nada más.
+      3. Los tours cargan solos cuando el visitante hace scroll hasta acá
+         (lazy-load). Mientras la URL sea el placeholder, se muestra el mensaje
+         de "próximamente" y ningún iframe intenta cargar.
+      ═══════════════════════════════════════════════════════════════════
+    -->
+    <section id="tours-vivo" class="section section-alt" data-search-title="Tours 360° en vivo" data-search-keys="tour virtual recorrer demo inmersivo muestra">
+      <p class="section-kicker" data-reveal>Tours en vivo</p>
+      <h2 class="section-title" data-reveal>Recorré<br>un tour ahora.</h2>
+      <p class="section-lead" data-reveal>
+        Una muestra de los tours virtuales 360° de 360 Essential Trip,
+        directo en esta página. Arrastrá para mirar alrededor.
+      </p>
+      <div class="tours-embed" data-reveal>
+        <div class="tour-slot">
+          <div class="tour-placeholder">
+            <p class="tour-placeholder-title">Tour 360° · 1</p>
+            <p>Próximamente — el tour se activará en este espacio.</p>
+          </div>
+          <iframe data-src="PONER_URL_TOUR_1_AQUI" title="Tour virtual 360° — 1" loading="lazy" allow="fullscreen; xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer"></iframe>
+        </div>
+        <div class="tour-slot">
+          <div class="tour-placeholder">
+            <p class="tour-placeholder-title">Tour 360° · 2</p>
+            <p>Próximamente — el tour se activará en este espacio.</p>
+          </div>
+          <iframe data-src="PONER_URL_TOUR_2_AQUI" title="Tour virtual 360° — 2" loading="lazy" allow="fullscreen; xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer"></iframe>
+        </div>
+        <div class="tour-slot">
+          <div class="tour-placeholder">
+            <p class="tour-placeholder-title">Tour 360° · 3</p>
+            <p>Próximamente — el tour se activará en este espacio.</p>
+          </div>
+          <iframe data-src="PONER_URL_TOUR_3_AQUI" title="Tour virtual 360° — 3" loading="lazy" allow="fullscreen; xr-spatial-tracking" allowfullscreen referrerpolicy="no-referrer"></iframe>
+        </div>
+      </div>
+      <div class="cta-row" data-reveal>
+        <a class="btn btn-primary" href="https://virtualtour.360essentialtrip.com" target="_blank" rel="noopener">Explorar todos los tours</a>
+      </div>
+    </section>
+
     <!-- MOMENTO FESTIVAL -->
-    <section id="momento-festival" class="section section-alt">
+    <section id="momento-festival" class="section section-alt" data-search-title="Festival Internacional Puro Cuento" data-search-keys="festival narración oral cuentos fundación 18 ediciones 2027 historias que nos habitan marzo">
       <p class="section-kicker" data-reveal>Festival Internacional Puro Cuento</p>
       <h2 class="section-title" data-reveal>18 ediciones<br>contando historias.</h2>
       <p class="section-lead" data-reveal>
@@ -139,7 +191,7 @@
     </section>
 
     <!-- BEAT DE HISTORIA (corto, entrelazado) -->
-    <section id="historia" class="section story-beat">
+    <section id="historia" class="section story-beat" data-search-title="Michael Navarro Hernández — La palabra como oficio" data-search-keys="narrador escritor blog libro cuentero michael navarro hernandez">
       <div class="moment-split reverse">
         <div class="moment-media" data-reveal>
           <img src="https://lh3.googleusercontent.com/d/1Wgx7kPup0SJry99P0TJSXvh1CVJSHN2R=w1200" alt="Michael Navarro Hernández en el festival" loading="lazy">
@@ -158,8 +210,25 @@
       </div>
     </section>
 
+    <!-- BLOG EN VIVO (feed RSS de Blogger vía proxy público) -->
+    <section id="blog" class="section" data-search-title="Del blog — Escribo borracho, edito sobrio" data-search-keys="blog textos poemas cuentos relatos literatura melquiades">
+      <p class="section-kicker" data-reveal>Del blog</p>
+      <h2 class="section-title" data-reveal>Escribo borracho,<br>edito sobrio.</h2>
+      <p class="section-lead" data-reveal>
+        Últimos textos del blog de Michael Navarro Hernández: poemas, cuentos
+        y crónicas, directo desde cuentero13.blogspot.com.
+      </p>
+      <div id="blog-posts" class="blog-grid" data-reveal>
+        <!-- Contenido por defecto: visible sin JS o si el feed falla. -->
+        <div class="blog-fallback">
+          <p>Leé los últimos textos directamente en el blog.</p>
+          <a class="btn btn-primary" href="https://cuentero13.blogspot.com/" target="_blank" rel="noopener">Visitar el blog</a>
+        </div>
+      </div>
+    </section>
+
     <!-- GALERÍA -->
-    <section id="galeria" class="section section-alt">
+    <section id="galeria" class="section section-alt" data-search-title="Galería de fotos" data-search-keys="fotos imágenes festival galería">
       <p class="section-kicker" data-reveal>Galería</p>
       <h2 class="section-title" data-reveal>El trabajo,<br>en imágenes.</h2>
       <div class="gallery" data-reveal>
@@ -176,7 +245,7 @@
     </section>
 
     <!-- CREDENCIALES (compacto) -->
-    <section id="credenciales" class="section creds-strip">
+    <section id="credenciales" class="section creds-strip" data-search-title="Credenciales y formación" data-search-keys="certificados inteligencia artificial drones ia copilot gemini chatgpt puebla">
       <p class="section-kicker" data-reveal>Credenciales</p>
       <h2 class="section-title" data-reveal>Formación que<br>respalda.</h2>
       <div class="creds" data-reveal>
@@ -192,7 +261,7 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section contact">
+    <section id="contacto" class="section contact" data-search-title="Contacto — Trabajemos juntos" data-search-keys="contacto whatsapp email contratar instagram formulario mensaje">
       <p class="section-kicker" data-reveal>Contacto</p>
       <h2 class="section-title" data-reveal>¿Trabajamos<br>juntos?</h2>
       <div class="contact-grid" data-reveal>
@@ -216,6 +285,47 @@
         <span class="social-label">Seguime:</span>
         <a class="social-link" href="https://www.instagram.com/cuentero13/" target="_blank" rel="noopener">Instagram · @cuentero13</a>
         <span class="social-link is-text">Facebook · Michael Navarro Hernandez cuentero</span>
+      </div>
+
+      <!--
+        ═══════════════════════════════════════════════════════════════════
+        PARA MIKE — CÓMO ACTIVAR EL FORMULARIO:
+        1. Creá una cuenta gratis en https://formspree.io y un formulario nuevo.
+        2. Formspree te da un ID (algo como "xqkrblabla").
+        3. Abrí main.js y pegalo en la primera línea marcada:
+             const FORMSPREE_ID = "tu_id_aqui";
+        Sin ID, el formulario muestra un aviso y no envía (los botones de
+        WhatsApp y email de arriba siguen funcionando siempre).
+        ═══════════════════════════════════════════════════════════════════
+      -->
+      <div class="form-wrap" data-reveal>
+        <h3 class="subsection">Escríbeme directo</h3>
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <label>Nombre
+              <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre">
+            </label>
+            <label>Email
+              <input type="email" name="email" required autocomplete="email" placeholder="tu@correo.com">
+            </label>
+          </div>
+          <label>Tipo de proyecto
+            <select name="tipo" required>
+              <option value="">Elegí una opción…</option>
+              <option>Tour 360°</option>
+              <option>Show de narración</option>
+              <option>Taller</option>
+              <option>Patrocinio / alianza</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label>Mensaje
+            <textarea name="mensaje" rows="4" required placeholder="Contame tu idea…"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <noscript><p class="form-noscript">Activá JavaScript para usar el formulario, o escribime por <a href="https://wa.me/50687252809" target="_blank" rel="noopener">WhatsApp</a>.</p></noscript>
+        </form>
       </div>
     </section>
   </main>
