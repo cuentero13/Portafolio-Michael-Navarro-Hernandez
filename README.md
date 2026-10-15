@@ -1,1 +1,33 @@
-IyBQb3J0YWZvbGlvIOKAlCBNaWNoYWVsIE5hdmFycm8gSGVybsOhbmRlegoKU2l0aW8gZXN0w6F0aWNvIGRlbCBwb3J0YWZvbGlvIGRpZ2l0YWwgdW5pZmljYWRvOiBuYXJyYWRvciBvcmFsIMK3IGdlc3RvciBjdWx0dXJhbCDCtyBwcm9kdWN0b3IgMzYwwrAuCgojIyBFc3RydWN0dXJhCgpgYGAKcG9ydGFmb2xpby1taWtlLwrilJzilIDilIAgaW5kZXguaHRtbCAgICAgICMgQ29udGVuaWRvIGNvbXBsZXRvIChlc3Bhw7FvbCkK4pSc4pSA4pSAIHN0eWxlcy5jc3MgICAgICAjIEVzdMOpdGljYSBvc2N1cmEgaW5tZXJzaXZhLCByZXNwb25zaXZlCuKUnOKUgOKUgCBtYWluLmpzICAgICAgICAgIyBXZWJHTCArIGN1cnNvciArIHNjcm9sbCArIGFuaW1hY2lvbmVzIChwcm9ncmVzaXZvKQrilJzilIDilIAgYXNzZXRzLyAgICAgICAgICMgSW3DoWdlbmVzIHkgcmVjdXJzb3MgcHJvcGlvcwrilJTilIDilIAgUkVBRE1FLm1kCmBgYAoKIyMgQ8OzbW8gdmVybG8KCi0gKipMb2NhbDoqKiBhYnJpciBgaW5kZXguaHRtbGAgZW4gZWwgbmF2ZWdhZG9yIChsb3MgQ0ROIHJlcXVpZXJlbiBpbnRlcm5ldCkuCi0gKipHaXRIdWIgUGFnZXM6Kiogc3ViaXIgbGEgY2FycGV0YSBhIHVuIHJlcG8geSBhY3RpdmFyIFBhZ2VzIChyYW1hIGBtYWluYCwgY2FycGV0YSByYcOteikuIE1pZ3JhYmxlIGEgZG9taW5pbyBwcm9waW8gdsOtYSBDTkFNRSBzaW4gY2FtYmlvcy4KCiMjIERpc2XDsW8KClJlZmVyZW5jaWE6IGFjdGl2ZXRoZW9yeS5uZXQg4oCUIG5pdmVsIEF3d3dhcmRzLgotIEZvbmRvIFdlYkdMIGNvbiBUaHJlZS5qcyAocGFydMOtY3VsYXMgYSBsYSBkZXJpdmEgKyBmb3JtYXMgd2lyZWZyYW1lIGZsb3RhbnRlcyksIGNvbW8gKipjYXBhIGRlY29yYXRpdmEqKi4KLSBFbCBjb250ZW5pZG8gcmVhbCB2YSBlbiBIVE1MIHByaW1lcm86IGZ1bmNpb25hIHNpbiBKUywgc2luIFdlYkdMIHkgZW4gbcOzdmlsZXMgKGZhbGxiYWNrIGNvbiBkZWdyYWRhZG8gQ1NTICsgYHByZWZlcnMtcmVkdWNlZC1tb3Rpb25gKS4KLSBTY3JvbGwgY2luZW1hdG9ncsOhZmljbzogTGVuaXMgKyBHU0FQIFNjcm9sbFRyaWdnZXIgKGNvbiBndWFyZHMgc2kgdW4gQ0ROIGZhbGxhKS4KLSBDdXJzb3IgcGVyc29uYWxpemFkbyAoc29sbyBwdW50ZXJvcyBmaW5vcyksIHRpcG9ncmFmw61hIEFyY2hpdm8gKyBJbnRlciwgYXp1bC9ibGFuY28gc29icmUgZm9uZG8gb3NjdXJvLgoKIyMgQ29udGVuaWRvCgpUb2RvIHZlcmlmaWNhZG8gYWwgMTUtb2N0LTIwMjY6IDM2MCBFc3NlbnRpYWwgVHJpcCAocGFxdWV0ZXMgeSBjYXNvcyBkZSDDqXhpdG8gY29uIGNpZnJhcyksIEZlc3RpdmFsIEludGVybmFjaW9uYWwgUHVybyBDdWVudG8gKDE4IGVkaWNpb25lcywgRnVuZGFjacOzbiAzMDA2ODI5NzU4LCAyMDI3KSwgYmxvZyB5IGxpYnJvcywgNyBjZXJ0aWZpY2Fkb3MgZGUgSUEgKyBjb25zdGFuY2lhIGRlIGRyb25lcyBJVCBQdWVibGEsIDMgQ1RBcyBkZSBjb250YWN0by4KCioqUmVnbGE6KiogbmFkYSBzZSBwdWJsaWNhIHNpbiByZXZpc2nDs24gZGUgTWlrZS4K
+# Portafolio — Michael Navarro Hernández
+
+Sitio estático del portafolio digital unificado: narrador oral · gestor cultural · productor 360°.
+
+## Estructura
+
+```
+portafolio-mike/
+├── index.html      # Contenido completo (español)
+├── styles.css      # Estética oscura inmersiva, responsive
+├── main.js         # WebGL + cursor + scroll + animaciones (progresivo)
+├── assets/         # Imágenes y recursos propios
+└── README.md
+```
+
+## Cómo verlo
+
+- **Local:** abrir `index.html` en el navegador (los CDN requieren internet).
+- **GitHub Pages:** subir la carpeta a un repo y activar Pages (rama `main`, carpeta raíz). Migrable a dominio propio vía CNAME sin cambios.
+
+## Diseño
+
+Referencia: activetheory.net — nivel Awwwards.
+- Fondo WebGL con Three.js (partículas a la deriva + formas wireframe flotantes), como **capa decorativa**.
+- El contenido real va en HTML primero: funciona sin JS, sin WebGL y en móviles (fallback con degradado CSS + `prefers-reduced-motion`).
+- Scroll cinematográfico: Lenis + GSAP ScrollTrigger (con guards si un CDN falla).
+- Cursor personalizado (solo punteros finos), tipografía Archivo + Inter, azul/blanco sobre fondo oscuro.
+
+## Contenido
+
+Todo verificado al 15-oct-2026: 360 Essential Trip (paquetes y casos de éxito con cifras), Festival Internacional Puro Cuento (18 ediciones, Fundación 3006829758, 2027), blog y libros, 7 certificados de IA + constancia de drones IT Puebla, 3 CTAs de contacto.
+
+**Regla:** nada se publica sin revisión de Mike.
