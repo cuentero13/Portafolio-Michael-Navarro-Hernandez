@@ -90,6 +90,9 @@
     scene.add(s1); scene.add(s2);
     shapes.push(s1, s2);
 
+    // Exponer materiales para la evolución de color por capítulo (v5)
+    try { window.__webglMats = { points: mat, wire: wireMat, wire2: s2.material }; } catch (e) {}
+
     var running = true;
     document.addEventListener('visibilitychange', function () {
       running = !document.hidden;
@@ -574,7 +577,7 @@
   /* ---------- 11. Parallax en fotos + reveals escalonados ---------- */
   if (hasGsap) {
     // Parallax sutil en imágenes de momentos y hero
-    gsap.utils.toArray('.moment-media img, .hero-bg').forEach(function (img) {
+    gsap.utils.toArray('.moment-media img, .hero-bg, .hero-portrait img, .story-photos img, .scene-photos img').forEach(function (img) {
       gsap.fromTo(img,
         { yPercent: -8 },
         {
@@ -682,5 +685,177 @@
       popup.hidden = false;
       try { window.sessionStorage.setItem('waPopupShown', '1'); } catch (e) {}
     }, 12000);
+  })();
+})();
+
+/* ============ v5 — El Cuentero: cinética, capítulos, lobo guía, dron, WebGL vivo ============ */
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGsap = (typeof gsap !== 'undefined') && !reduceMotion;
+
+  /* ---------- 15. Tipografía cinética del hero ---------- */
+  (function initKinetic() {
+    var words = document.querySelectorAll('.hero-title.kinetic .k-word, .hero-title.kinetic .k-dot');
+    if (!words.length) return;
+    if (hasGsap) {
+      gsap.fromTo(words,
+        { yPercent: 110 },
+        { yPercent: 0, duration: 1.15, ease: 'power4.out', stagger: 0.09, delay: 0.25 }
+      );
+    } else {
+      words.forEach(function (w) { w.style.transform = 'none'; });
+    }
+  })();
+
+  /* ---------- 16. Rail de capítulos + progreso ---------- */
+  (function initRail() {
+    var rail = document.querySelector('.chapter-rail');
+    if (!rail) return;
+    rail.hidden = false;
+    var bar = rail.querySelector('.rail-progress span');
+    var links = Array.prototype.slice.call(rail.querySelectorAll('a'));
+    var byCh = {};
+    links.forEach(function (a) { byCh[a.getAttribute('data-ch')] = a; });
+
+    function onScroll() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop / max) : 0;
+      if (bar) bar.style.height = (p * 100).toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    window.__setActiveChapter = function (ch) {
+      links.forEach(function (a) {
+        a.classList.toggle('is-active', a.getAttribute('data-ch') === ch);
+      });
+    };
+  })();
+
+  /* ---------- 17. Lobo guía ---------- */
+  (function initWolf() {
+    var wolf = document.getElementById('wolf-guide');
+    var says = document.getElementById('wolf-says');
+    if (!wolf || !says) return;
+    wolf.hidden = false;
+
+    var current = null;
+    var timer = null;
+
+    function show(text) {
+      if (text === current) {
+        if (!wolf.classList.contains('is-visible')) wolf.classList.add('is-visible');
+        return;
+      }
+      current = text;
+      wolf.classList.remove('is-visible', 'is-entering');
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        says.textContent = text;
+        wolf.classList.add('is-visible', 'is-entering');
+        setTimeout(function () { wolf.classList.remove('is-entering'); }, 1700);
+      }, 350);
+    }
+
+    function hide() {
+      wolf.classList.remove('is-visible');
+      current = null;
+    }
+
+    window.__wolfShow = show;
+    window.__wolfHide = hide;
+
+    // Aparece a los 2.5s con el texto del hero
+    setTimeout(function () {
+      var hero = document.getElementById('hero');
+      var t = hero ? hero.getAttribute('data-wolf') : null;
+      if (t) show(t);
+    }, 2500);
+  })();
+
+  /* ---------- 18. Observador de capítulos: rail + lobo + dron ---------- */
+  (function initChapters() {
+    var drone = document.getElementById('drone');
+    if (drone) drone.hidden = false;
+
+    var chapters = Array.prototype.slice.call(
+      document.querySelectorAll('main section[data-chapter]')
+    );
+    if (!chapters.length || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      var best = null, bestRatio = 0;
+      entries.forEach(function (en) {
+        if (en.isIntersecting && en.intersectionRatio > bestRatio) {
+          bestRatio = en.intersectionRatio;
+          best = en.target;
+        }
+      });
+      if (!best) return;
+      var ch = best.getAttribute('data-chapter');
+
+      if (window.__setActiveChapter) window.__setActiveChapter(ch);
+
+      var wolfText = best.getAttribute('data-wolf');
+      if (wolfText && window.__wolfShow) window.__wolfShow(wolfText);
+
+      // El dron sobrevuela el capítulo 360°
+      if (drone) {
+        var fly = (ch === '02' || ch === '02b') && !reduceMotion;
+        drone.classList.toggle('is-flying', fly);
+      }
+
+      // Color del WebGL según capítulo
+      var palette = best.getAttribute('data-webgl');
+      if (palette && window.__webglTarget) window.__webglTarget(palette);
+    }, { threshold: [0.15, 0.35, 0.6] });
+
+    chapters.forEach(function (c) { io.observe(c); });
+  })();
+
+  /* ---------- 19. WebGL que evoluciona con el scroll ---------- */
+  (function initWebglMood() {
+    var COLORS = {
+      ember: 0xff6b4a,
+      teal: 0x2dd4bf,
+      gold: 0xf2b134,
+      blue: 0x4d8dff
+    };
+    var target = new (window.THREE ? THREE.Color : function () {})();
+    var hasTarget = false;
+    var currentName = 'blue';
+
+    function hex(name) { return COLORS[name] || COLORS.blue; }
+
+    window.__webglTarget = function (name) {
+      if (!window.__webglMats || !window.THREE) return;
+      if (name === currentName) return;
+      currentName = name;
+      target.setHex(hex(name));
+      hasTarget = true;
+    };
+
+    if (reduceMotion || !window.THREE) return;
+
+    var cTmp = new THREE.Color();
+    (function moodTick() {
+      var mats = window.__webglMats;
+      if (mats && hasTarget) {
+        [mats.points, mats.wire, mats.wire2].forEach(function (m) {
+          if (!m) return;
+          cTmp.copy(m.color).lerp(target, 0.03);
+          m.color.copy(cTmp);
+          if (Math.abs(m.color.r - target.r) < 0.004 &&
+              Math.abs(m.color.g - target.g) < 0.004 &&
+              Math.abs(m.color.b - target.b) < 0.004) {
+            hasTarget = false;
+          }
+        });
+      }
+      requestAnimationFrame(moodTick);
+    })();
   })();
 })();

@@ -1085,3 +1085,335 @@ a.social-link:hover { border-color: var(--blue); background: var(--blue-soft); t
 
 /* ============ Reveal escalonado (JS) ============ */
 [data-reveal-stagger] > * { opacity: 1; }
+
+/* ═══════════ v5 — El Cuentero: capítulos, lobo guía, dron, cinética ═══════════ */
+:root {
+  --ember: #ff6b4a;
+  --ember-soft: rgba(255, 107, 74, .12);
+  --red-thread: #e63946;
+}
+.kicker-ember { color: var(--ember) !important; }
+.accent-ember { color: var(--ember); }
+
+/* Números de capítulo */
+.chapter-num {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: .85rem;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.chapter-num::after {
+  content: "";
+  height: 1px;
+  width: 64px;
+  background: var(--line);
+}
+
+/* Rail lateral de capítulos */
+.chapter-rail {
+  position: fixed;
+  right: clamp(.8rem, 2vw, 1.6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+.chapter-rail[hidden] { display: none; }
+.rail-progress {
+  position: absolute;
+  left: -10px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.rail-progress span {
+  display: block;
+  width: 100%;
+  height: 0;
+  background: var(--blue);
+  border-radius: 2px;
+}
+.chapter-rail a {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  text-decoration: none;
+  color: var(--muted);
+  opacity: .55;
+  transition: opacity .3s, color .3s;
+}
+.chapter-rail a i { font-style: normal; font-size: .68rem; font-weight: 700; letter-spacing: .1em; }
+.chapter-rail a em { font-style: normal; font-size: .72rem; display: none; }
+.chapter-rail a.is-active { opacity: 1; color: var(--ink); }
+.chapter-rail a.is-active i { color: var(--gold); }
+@media (min-width: 1100px) {
+  .chapter-rail a em { display: inline; }
+}
+@media (max-width: 760px) {
+  .chapter-rail { display: none; }
+}
+
+/* Lobo guía */
+.wolf-guide {
+  position: fixed;
+  left: clamp(.9rem, 3vw, 2rem);
+  bottom: clamp(.9rem, 3vw, 2rem);
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  max-width: 300px;
+  padding: .7rem 1rem .7rem .7rem;
+  background: rgba(5, 7, 15, .82);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  pointer-events: none;
+}
+.wolf-guide[hidden] { display: none; }
+.wolf-guide.is-visible { opacity: 1; transform: translateY(0); }
+.wolf-svg {
+  width: 52px; height: 52px;
+  flex: 0 0 52px;
+  color: var(--gold);
+}
+.wolf-says {
+  margin: 0;
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.wolf-guide.is-entering .wolf-svg { animation: wolf-nod 1.6s var(--ease); }
+@keyframes wolf-nod {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-7deg); }
+  60% { transform: rotate(5deg); }
+}
+@media (max-width: 760px) {
+  .wolf-guide { max-width: 230px; padding: .55rem .8rem .55rem .55rem; }
+  .wolf-svg { width: 40px; height: 40px; flex-basis: 40px; }
+  .wolf-says { font-size: .78rem; }
+}
+
+/* Dron animado */
+.drone {
+  position: fixed;
+  top: 18%;
+  left: -140px;
+  z-index: 5;
+  width: 110px;
+  color: var(--teal);
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, .35));
+}
+.drone[hidden] { display: none; }
+.drone.is-flying { opacity: .9; animation: drone-fly 16s linear infinite; }
+@keyframes drone-fly {
+  0% { left: -140px; top: 16%; transform: rotate(2deg); }
+  25% { top: 24%; transform: rotate(-2deg); }
+  50% { left: calc(100% + 20px); top: 14%; transform: rotate(2deg); }
+  50.01% { left: -140px; }
+  75% { top: 26%; }
+  100% { left: -140px; top: 16%; transform: rotate(-2deg); }
+}
+.drone .prop { transform-origin: center; transform-box: fill-box; }
+.drone.is-flying .prop { animation: prop-spin .18s linear infinite; }
+@keyframes prop-spin {
+  from { transform: scaleX(1); }
+  50% { transform: scaleX(.15); }
+  to { transform: scaleX(1); }
+}
+
+/* Hero cinético */
+.hero-title.kinetic { line-height: .95; }
+.k-line { display: block; overflow: hidden; }
+.k-word, .k-dot {
+  display: inline-block;
+  font-size: clamp(3.4rem, 13vw, 9.5rem);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  transform: translateY(110%);
+}
+.k-word.accent { color: var(--ember); }
+.k-dot { color: var(--gold); }
+.hero-portrait {
+  margin: 3rem auto 0;
+  max-width: 560px;
+  position: relative;
+}
+.hero-portrait img {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  display: block;
+}
+.hero-portrait figcaption {
+  margin-top: .7rem;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: .08em;
+}
+.hero { padding-bottom: 3rem; }
+
+/* Hilo rojo narrativo (motivo Caperucita) */
+.story-thread { position: relative; padding-left: 1.4rem; }
+.story-thread::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .4rem; bottom: .4rem;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(var(--red-thread), var(--gold));
+}
+.story-quote {
+  margin: 2rem 0;
+  padding: 1.4rem 1.6rem;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-soft);
+  border-radius: 0 14px 14px 0;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.7;
+}
+.story-quote cite {
+  display: block;
+  margin-top: .8rem;
+  font-size: .82rem;
+  font-style: normal;
+  color: var(--muted);
+}
+.story-quote.big {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  text-align: center;
+  border-left: none;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: none;
+  border-radius: 0;
+  padding: 2.2rem 1rem;
+  margin: 3rem 0 1rem;
+}
+
+/* Timeline */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+.tl-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  background: rgba(244, 247, 255, .02);
+  transition: border-color .3s, transform .3s var(--ease);
+}
+.tl-item:hover { border-color: var(--ember); transform: translateY(-3px); }
+.tl-year {
+  font-family: var(--font-title);
+  font-weight: 800;
+  color: var(--ember);
+  font-size: 1.05rem;
+  letter-spacing: .05em;
+}
+.tl-item p { margin: .4rem 0 0; font-size: .9rem; color: var(--muted); }
+
+/* Fotos de la historia */
+.story-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.story-photos figure { margin: 0; }
+.story-photos img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  display: block;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.story-photos figcaption { font-size: .8rem; color: var(--muted); margin-top: .5rem; }
+@media (max-width: 640px) { .story-photos { grid-template-columns: 1fr; } }
+
+/* Lista de tours propios */
+.tour-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 2.5rem;
+}
+.tour-item {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--teal);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  background: rgba(45, 212, 191, .04);
+  transition: transform .3s var(--ease), border-color .3s;
+}
+.tour-item:hover { transform: translateY(-3px); border-color: var(--teal); }
+.tour-item h3 { font-size: 1.02rem; margin: 0 0 .35rem; }
+.tour-item h3 span {
+  display: block;
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--teal);
+  letter-spacing: .06em;
+}
+.tour-item p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+/* Escena: fotos + placeholders honestos */
+.scene-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.scene-photos figure { margin: 0; }
+.scene-photos img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  display: block;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+.scene-photos .tall img { aspect-ratio: 3/4; }
+.scene-photos figcaption { font-size: .8rem; color: var(--muted); margin-top: .5rem; }
+.shows-mike { margin: 2.5rem 0; }
+.placeholder-note {
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  padding: 1.6rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  background: rgba(244, 247, 255, .02);
+}
+.shows-fundacion { margin-top: 3rem; }
+.section-lead.small { font-size: .95rem; color: var(--muted); }
+
+/* Capítulos: respiro vertical */
+.chapter { padding-top: 7rem; }
+
+/* Colores WebGL por capítulo (el canvas reacciona; esto es respaldo visual) */
+.section[data-webgl="teal"] .chapter-num::after { background: var(--teal); }
+.section[data-webgl="gold"] .chapter-num::after { background: var(--gold); }
+.section[data-webgl="ember"] .chapter-num::after { background: var(--ember); }

@@ -62,3 +62,50 @@ Todo verificado al 15-oct-2026: 360 Essential Trip (paquetes y casos de éxito c
 Fotos del CV: el CV en Drive («curriculum-obra-transitarte») no contiene
 fotos (solo texto); el CV de OneDrive no es accesible desde este entorno.
 Se usaron 3 fotos reales del dossier navideño.
+
+## v5 — El Cuentero (15-oct-2026)
+
+Reconstrucción total como scrollytelling inmersivo centrado en Mike.
+
+**Concepto narrativo:** "La historia de un cuentero" — 7 capítulos numerados
+(00 Inicio → 01 El cuentero → 02 Territorio 360° → 03 Festival → 04 En escena →
+05 Palabra escrita → 06 Contacto), con la historia personal de Mike como
+columna vertebral (su libro inédito, su mamá, Heredia 1991, timeline 1991–2026).
+
+**Técnicas aplicadas (referentes Awwwards):**
+- Un efecto firma: WebGL que EVOLUCIONA con el scroll (las partículas cambian
+  de color por capítulo: brasa/ember en su historia, turquesa en 360°,
+  dorado en festival) en vez de fondo decorativo estático.
+- Tipografía cinética en el hero ("SOY CUENTERO", letras que se arman).
+- Rail lateral de capítulos con progress indicator.
+- El show junto al contenido, nunca delante (contenido HTML primero).
+
+**Motivos creativos (ideas de Mike, usadas como inspiración):**
+- 🐺 **El lobo guía**: personaje SVG recurrente que aparece en cada capítulo
+  con micro-textos ("Seguime. Te voy a contar una historia.", "¿Contamos la tuya?").
+- 🛸 **El dron**: SVG animado que sobrevuela el capítulo 360° (hélices girando).
+- 🧵 **Caperucita**: "hilo rojo" narrativo — línea roja que recorre el capítulo
+  de su historia.
+
+**Contenido personal verificado (nuevo en v5):**
+- 5 fotos personales de Mike (Drive "Portafolio web - fotos"): en escenario
+  con sombrero, con micrófono, dúo de cuenteros, festival con gorra, comunidad.
+- Bio de su portafolio profesional + premios (Impulsarte 2024, MCJ 2020,
+  PICE 2021, Iberbibliotecas 2022, Belén 2023, Parque La Libertad 2023).
+- Sus tours propios: Monte Albán, Chapultepec, Barco Hundido, Zócalo,
+  Hierve el Agua, Casa 1920.
+- Cita: "La tecnología es el nuevo fuego alrededor del cual contamos
+  nuestras historias."
+- Citas de su libro inédito «Biografía de un cuentero tímido que no quería
+  aprender a leer» (con atribución).
+
+**Mantiene de v4:** buscador (/), formulario Formspree (placeholder),
+1 tour embebido real + 2 placeholders, blog vivo RSS, lightbox, FAQ,
+popup WhatsApp (+506 8725 2809), todas las fotos anteriores.
+
+**PENDIENTES para Mike:**
+1. Títulos y descripciones de SUS espectáculos como narrador (los del dossier
+   son de la Fundación; la sección "Mis espectáculos" quedó con placeholder honesto).
+2. ID de Formspree (formulario).
+3. URLs de 2 tours más para embeber.
+4. URL "Mundo Essential Trip" del Facebook de 360essentialtrip.
