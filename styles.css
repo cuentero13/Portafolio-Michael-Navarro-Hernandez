@@ -933,6 +933,15 @@ a.social-link:hover { border-color: var(--blue); background: var(--blue-soft); t
   margin: 1.1rem 0 1.3rem;
 }
 .show-price span { font-family: var(--font-body); font-size: .85rem; font-weight: 500; color: var(--muted); }
+.show-body .show-meta {
+  flex: none;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 .9rem;
+}
 .show-card .btn { align-self: flex-start; }
 .show-card-text { justify-content: center; }
 

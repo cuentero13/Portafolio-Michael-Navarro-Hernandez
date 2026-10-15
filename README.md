@@ -104,8 +104,32 @@ columna vertebral (su libro inédito, su mamá, Heredia 1991, timeline 1991–20
 popup WhatsApp (+506 8725 2809), todas las fotos anteriores.
 
 **PENDIENTES para Mike:**
-1. Títulos y descripciones de SUS espectáculos como narrador (los del dossier
-   son de la Fundación; la sección "Mis espectáculos" quedó con placeholder honesto).
+1. ✅ RESUELTO — Títulos de sus espectáculos como narrador (dossier "Michael Navarro (Bc).pdf" del OneDrive).
 2. ID de Formspree (formulario).
 3. URLs de 2 tours más para embeber.
 4. URL "Mundo Essential Trip" del Facebook de 360essentialtrip.
+
+## v6 — Dossier personal (15-oct-2026)
+
+Fuente: dossier "Michael Navarro (Bc).pdf" (OneDrive Fundación, carpeta
+"Michael Navarro - Certificaciones"), proporcionado por Mike.
+
+- **Bio del dossier** en el capítulo 01: "Productor y cuentero, pero sobre todo
+  amante de las buenas historias (y el chile). Aseguran que está loco, pero
+  nadie ha presentado pruebas. Cuenta historias desde que tiene uso de razón
+  y viceversa." Timeline 2008 actualizado con el texto del dossier.
+- **"Mis espectáculos"** (capítulo 04, PRIMERO — los 4 navideños de la
+  Fundación quedaron en la subsección secundaria "Producciones de la
+  Fundación"): 6 shows propios con duración, edad recomendada, descripción
+  y botón "Cotizar por WhatsApp" con mensaje pre-llenado:
+  Historias de Amor con Humor (45–50 min, +12) · La Semilla del Rey
+  (50–60 min, +4) · Los Misterios de la Abuela (60 min, +13) ·
+  Abuela y la Bendita Gallina (60 min, +13) · Cuentos, Mentiras y
+  Exageraciones (50 min, +13) · Crónica de un disparo anunciado (30 min, +16).
+- **Descargar mi dossier (PDF)** → enlace OneDrive en la sección de
+  espectáculos.
+- **Certificados** → tarjeta en Documentos/Credenciales: "Ver mis
+  certificados" → carpeta OneDrive (CV, dossier y certificados).
+- **Facebook** → actualizado a "@Michael Navarro Cuentero" (nombre del
+  dossier, como texto sin URL inventada).
+- Buscador indexa los 6 shows nuevos (data-search-keys actualizado).
