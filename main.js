@@ -534,4 +534,153 @@
 
     document.querySelectorAll('.tour-slot').forEach(function (slot) { io.observe(slot); });
   })();
+
+  /* ---------- 10. Contadores animados ---------- */
+  (function initCounters() {
+    var els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+
+    function animate(el) {
+      var target = parseFloat(el.getAttribute('data-count'));
+      var prefix = el.getAttribute('data-prefix') || '';
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (reduceMotion) {
+        el.textContent = prefix + target + suffix;
+        return;
+      }
+      var dur = 1400, start = null;
+      function frame(now) {
+        if (!start) start = now;
+        var p = Math.min((now - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { animate(en.target); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.5 });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      els.forEach(animate);
+    }
+  })();
+
+  /* ---------- 11. Parallax en fotos + reveals escalonados ---------- */
+  if (hasGsap) {
+    // Parallax sutil en imágenes de momentos y hero
+    gsap.utils.toArray('.moment-media img, .hero-bg').forEach(function (img) {
+      gsap.fromTo(img,
+        { yPercent: -8 },
+        {
+          yPercent: 8, ease: 'none',
+          scrollTrigger: { trigger: img.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true }
+        }
+      );
+    });
+
+    // Reveal escalonado para grupos
+    gsap.utils.toArray('[data-reveal-stagger]').forEach(function (group) {
+      gsap.fromTo(group.children,
+        { y: 44, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.12,
+          scrollTrigger: { trigger: group, start: 'top 85%', once: true }
+        }
+      );
+    });
+  }
+
+  /* ---------- 12. Tilt 3D sutil en tarjetas ---------- */
+  (function initTilt() {
+    if (!finePointer || reduceMotion) return;
+    document.querySelectorAll('.card, .show-card, .contact-card, .blog-card').forEach(function (el) {
+      el.classList.add('tilt');
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'perspective(900px) rotateX(' + (-y * 7).toFixed(2) +
+          'deg) rotateY(' + (x * 7).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+    });
+  })();
+
+  /* ---------- 13. Lightbox en galerías ---------- */
+  (function initLightbox() {
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.hidden = true;
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Vista ampliada de la foto');
+    box.innerHTML = '<button class="lightbox-close" aria-label="Cerrar">×</button>' +
+      '<figure><img alt=""><figcaption></figcaption></figure>';
+    document.body.appendChild(box);
+    var img = box.querySelector('img');
+    var cap = box.querySelector('figcaption');
+
+    function open(src, alt, caption) {
+      img.src = src;
+      img.alt = alt || '';
+      cap.textContent = caption || alt || '';
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      box.hidden = true;
+      img.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.gallery .g-item, .show-media, .festival-mosaic').forEach(function (zone) {
+      zone.addEventListener('click', function (e) {
+        var pic = e.target.closest('img');
+        if (!pic) return;
+        var fig = pic.closest('figure');
+        var caption = fig ? (fig.querySelector('figcaption') || {}).textContent : pic.alt;
+        // URL grande: quitar el parámetro de ancho para máxima calidad
+        var big = pic.src.replace(/=w\d+$/, '=w1600');
+        open(big, pic.alt, caption);
+      });
+    });
+
+    box.querySelector('.lightbox-close').addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box || e.target.tagName === 'IMG') close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !box.hidden) close();
+    });
+  })();
+
+  /* ---------- 14. Popup WhatsApp Fundación ---------- */
+  (function initWaPopup() {
+    var popup = document.getElementById('wa-popup');
+    if (!popup) return;
+    try {
+      if (window.sessionStorage.getItem('waPopupShown')) return;
+    } catch (e) { /* sin sessionStorage: mostrar igual una vez */ }
+
+    var closeBtn = document.getElementById('wa-close');
+    function close(mark) {
+      popup.hidden = true;
+      if (mark) {
+        try { window.sessionStorage.setItem('waPopupShown', '1'); } catch (e) {}
+      }
+    }
+    closeBtn.addEventListener('click', function () { close(true); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !popup.hidden) close(true);
+    });
+
+    setTimeout(function () {
+      if (document.hidden) return;
+      popup.hidden = false;
+      try { window.sessionStorage.setItem('waPopupShown', '1'); } catch (e) {}
+    }, 12000);
+  })();
 })();

@@ -38,3 +38,27 @@ Referencia: activetheory.net — nivel Awwwards.
 Todo verificado al 15-oct-2026: 360 Essential Trip (paquetes y casos de éxito con cifras), Festival Internacional Puro Cuento (18 ediciones, Fundación 3006829758, 2027), blog y libros, 7 certificados de IA + constancia de drones IT Puebla, 3 CTAs de contacto.
 
 **Regla:** nada se publica sin revisión de Mike.
+
+## v4 — Espectáculos, color y más interactividad (15-oct-2026)
+
+- **Espectáculos**: sección con 4 shows verificados del dossier oficial de la
+  Fundación (precios en colones + IVA): «Los 3 Reyes magos cuentan, cantan y
+  encantan» (₡350.000 colegios), «La navidad con Festival Puro Cuento»
+  (₡550.000), «Los duendes cuentan la navidad» (₡350.000) y «Un cuento de
+  navidad» (₡550.000). Fotos reales del dossier en Drive público.
+- **El narrador**: el beat de historia ahora se titula "El narrador".
+- **Colores**: dorado/ámbar (`--gold`) para festival, turquesa (`--teal`) para
+  360°, sin perder la estética oscura.
+- **Interactividad**: lightbox en galerías (clic en fotos), FAQ acordeón con
+  `<details>` (funciona sin JS), contadores animados en las cifras
+  (`data-count`/`data-prefix`/`data-suffix`), parallax en fotos (GSAP),
+  reveals escalonados (`data-reveal-stagger`), tilt 3D sutil en tarjetas.
+- **Popup WhatsApp Fundación**: aparece a los 12s, una vez por sesión
+  (sessionStorage), se cierra con X o Esc. Número: +506 8725 2809.
+- **Mundo Essential Trip**: tarjeta marcada como PENDIENTE — no se encontró
+  la URL exacta del enlace en facebook.com/360essentialtrip (requiere acceso
+  a la página). Ver comentario "PARA MIKE" en index.html.
+
+Fotos del CV: el CV en Drive («curriculum-obra-transitarte») no contiene
+fotos (solo texto); el CV de OneDrive no es accesible desde este entorno.
+Se usaron 3 fotos reales del dossier navideño.
